@@ -1,0 +1,44 @@
+<html >
+<html>
+    <head> 
+        <link th:href="@{/inventory-stylesheet.css}" rel="stylesheet"> 
+    </head>    
+    <body>
+    
+        <div class="topnav">
+            <a  th:href="@{/}" >Booking Page</a>
+            <a class="active" th:href="@{/inventory}">List Of Orders</a>
+        </div>
+
+        <div class="alert success" th:if="${status} == 'success'">
+            <strong> You successfully submited the date and time! </strong> 
+        </div>
+
+        <div class="alert" th:if="${status} == 'failed'">
+            <strong > You failed to submit the item. </strong> 
+       </div>
+
+        <div class="container">
+           <table>
+              <tr class="head">
+                 <th>Category</th>
+                 <th>Name</th>
+                 <th>Time for starting</th>
+                 <th>Time for ending</th>
+                 <th>Booking Date Date</th>
+                 <th> </th>
+              </tr>
+              <tr th:each="item: ${items}">
+                 <td th:text="${item.category}"></th>
+                 <td th:text="${item.name}"></td>
+                 <td th:text="${(item.price)}"></td>
+                 <td th:text="${(item.discount)}"></td>
+                 <td type="date" th:text="${#dates.format(item.date, 'yyyy-MM-dd')}"></td>
+                 <td>
+                    <a role="button" style="color:black; background-color: #f8a79f" class="table-button" th:href="@{/(id = ${item.id})}">Update</a>
+                 </td>
+              </tr>
+           </table>
+        </div>
+   </body>
+</html>

@@ -1,0 +1,28 @@
+<html >
+<html>
+    <head> 
+        <link th:href="@{/form-stylesheet.css}" rel="stylesheet"> 
+    </head>    
+    <body>
+        <div class="topnav">
+            <a class="active" th:href="@{/}" >Booking Page</a>
+            <a th:href="@{/inventory}">List Of Orders</a>
+            
+        </div>
+        <div class="container">    
+            <form method="post" th:object="${item}" th:action="@{/submitItem}">
+                <select class="select" th:field="*{category}">
+                    <option style="color:blue" value="">Choose Category</option>
+                
+                    <option th:each="category: ${categories}" th:text="${category}" th:value="${category}"> Placeholder </option>
+                </select>
+                <input type="text" style="color: black; " placeholder="Name" th:field="*{name}">
+                <input class="half" style="background-color: #f8a79f; color: black;" type="time" placeholder="time from" th:field="*{price}">
+                <input class="half" style="background-color: #f8a79f; color: black;" type="time" placeholder="time to" th:field="*{discount}">
+                <input type="date" style="color:black" th:field="*{date}">
+                <input type="hidden" th:field="*{id}">
+                <input type="submit" value="Submit Order">
+            </form>
+        </div>      
+    </body>
+</html>
