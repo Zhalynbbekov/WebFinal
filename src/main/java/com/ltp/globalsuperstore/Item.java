@@ -3,13 +3,21 @@ package com.ltp.globalsuperstore;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Item {
+    @NotBlank(message = "Category field can not be blank!")
     private String category;
+    @NotBlank(message = "Name field can not be blank!")
     private String name;
+    @NotBlank(message = "Time for starting can not be blank!")
     private String price;
+    @NotBlank(message = "Time to end can not be blank!")
     private String discount;
+    @Future(message = "The booking date must be in the future!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private String id;
